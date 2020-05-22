@@ -1,0 +1,25 @@
+.chart-analysis {
+    margin-top: 50px;
+}
+h1 {
+    text-align: center;
+}
+.chart {
+    margin-top: 50px;
+}
+header {
+    margin-top: 30px;
+}
+#logo {
+    margin-left: 50px;
+}
+#logo img {
+    height: 50px;
+}
+.t-speedometer {
+    margin-top: 50px;
+}
+.gauge-val {
+    position: absolute;
+    top: 140px;
+}
