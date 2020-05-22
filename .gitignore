@@ -1,3 +1,5 @@
+.idea
+
 /scraper/venv
 /scraper/data.json
 /scraper/dollar_index.json
