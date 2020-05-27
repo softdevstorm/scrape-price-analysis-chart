@@ -19,12 +19,17 @@ def job():
         page_content = requests.get(target_url, headers=headers).content
         tree = html.fromstring(page_content)
         price = tree.xpath('//span[@id="last_last"]/text()')
+        diff = tree.xpath('//span[contains(@class, "arial_20")]/text()')
+        offset = diff[0]
+        percent = diff[1]
         latest_price = _clean_text(price[0])
         current_time = datetime.datetime.now()
         date_time = datetime.datetime.strftime(current_time, '%d:%m:%H:%M:%S')
 
         data = {
             'latest_price': latest_price,
+            'offset': offset,
+            'percent': percent,
             'date': date_time
         }
 

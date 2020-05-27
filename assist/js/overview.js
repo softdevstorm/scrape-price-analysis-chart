@@ -1,11 +1,14 @@
-var auth = localStorage.getItem('auth');
-if (!auth) {
-    var currentHref = window.location.href;
-    window.location.replace(currentHref.replace('/overview.html', ''));
-} else {
-    boerseAna();
-    dollarIndexAnalysis();
-}
+// var auth = localStorage.getItem('auth');
+// if (!auth) {
+//     var currentHref = window.location.href;
+//     window.location.replace(currentHref.replace('/overview.html', ''));
+// } else {
+//     boerseAna();
+//     dollarIndexAnalysis();
+// }
+
+boerseAna();
+dollarIndexAnalysis();
 
 function boerseAna() {
     var chart;
@@ -254,57 +257,80 @@ function dollarIndexAnalysis() {
         staticLabels: {
             font: "90% sans-serif", // Specifies font
             labels: [-100, -80, -60, -40, -20, 0, 20, 40, 60, 80, 100], // Print labels at these values
+            // labels: [-10, -5, 0, 5, 10], // Print labels at these values
             color: "black", // Optional: Label text color
             fractionDigits: 0 // Optional: Numerical precision. 0=round off.
         }, // just experiment with them
         strokeColor: 'red', // to see which ones work best for you
-        staticZones: [{
-                strokeStyle: "#82b944",
+        staticZones: [
+
+            // {
+            //     strokeStyle: "#ff0000",
+            //     min: -10,
+            //     max: -5
+            // },
+            // {
+            //     strokeStyle: "#ff0000",
+            //     min: -5,
+            //     max: 0  
+            // },
+            // {
+            //     strokeStyle: "#82b944",
+            //     min: 0,
+            //     max: 5
+            // },
+            // {
+            //     strokeStyle: "#82b944",
+            //     min: 5,
+            //     max: 10
+            // },
+            {
+                strokeStyle: "#ff0000",
                 min: -100,
                 max: -80
             }, // Yellow#a6db69
             {
-                strokeStyle: "#a6db69",
+                strokeStyle: "#ff4000",
                 min: -80,
                 max: -60
             }, // Green#a6db69
             {
-                strokeStyle: "#a7cb43",
+                strokeStyle: "#ff6200",
                 min: -60,
                 max: -40
             }, // Yellowa7cb43
             {
-                strokeStyle: "#ddec12",
+                strokeStyle: "#ffbb00",
                 min: -40,
                 max: -20
             }, // Yellow
             {
-                strokeStyle: "#f2c750",
+                strokeStyle: "#ffc31f",
                 min: -20,
                 max: 0
             }, // Green #f2c750
             {
-                strokeStyle: "#ffc31f",
+                strokeStyle: "#f2c750",
                 min: 0,
                 max: 20
             }, // Yellow
             {
-                strokeStyle: "#ffbb00",
+                strokeStyle: "#ddec12",
                 min: 20,
                 max: 40
             }, // Yellow #ffbb00
             {
-                strokeStyle: "#ff6200",
+                strokeStyle: "#a7cb43",
                 min: 40,
                 max: 60
             }, // Green
             {
-                strokeStyle: "#ff4000",
+                strokeStyle: "#a6db69",
                 min: 60,
                 max: 80
             }, // Yellow
             {
-                strokeStyle: "#ff0000",
+                strokeStyle: "#82b944",
                 min: 80,
                 max: 100
             }, // Yellow
@@ -323,6 +349,8 @@ function dollarIndexAnalysis() {
 
     // randomly change value
     var randomize = 0;
+    var offset = 0;
+    var percent = 0;
     updateDollarIndexGaugeVal();
 
     setTimeout(function() {
@@ -333,15 +361,23 @@ function dollarIndexAnalysis() {
         $.getJSON("scraper/dollar_index.json", function(json) {
             try {
                 randomize = parseFloat(json[json.length - 1].latest_price);
+                offset = parseFloat(json[json.length - 1].offset);
+                percent = parseFloat(json[json.length - 1].percent) *100
+                setTimeout(function() {
+                    $('#dollar_index-gauge_value').text(offset.toFixed(3));
+                    $('#dollar_index-percent').text('(' + percent.toFixed(2) + '%)');
+                }, 200);
             } catch (err) {
                 console.log(err);
                 randomize = 0;
+                offset = 0;
+                percent = 0;
             }
         });
-        gauge.set(randomize);
+        gauge.set(percent);
     }
-
-    gauge.setTextField(document.getElementById("dollar_index-gauge_value"), 3);
+    //
+    // gauge.setTextField(document.getElementById("dollar_index-gauge_value"), 3);
 
     createDollarIndexBarChart();
 
@@ -371,13 +407,16 @@ function dollarIndexAnalysis() {
                         data: series
                     }],
                     chart: {
-                        type: 'bar',
+                        type: 'area',
                         height: 350
                     },
                     dataLabels: {
                         enabled: false,
                     },
                     yaxis: {
+                        min: 99,
+                        max: 100,
+                        opposite: true,
                         title: {
                             text: 'Latest Price',
                         },

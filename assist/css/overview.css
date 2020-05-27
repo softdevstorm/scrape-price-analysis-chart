@@ -21,5 +21,6 @@ header {
 }
 .gauge-val {
     position: absolute;
-    top: 140px;
+    /*top: 140px;*/
+    left: 250px;
 }

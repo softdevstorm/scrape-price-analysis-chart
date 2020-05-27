@@ -1,95 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="assist/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/animate/animate.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="assist/css/util.css">
-	<link rel="stylesheet" type="text/css" href="assist/css/main.css">
-<!--===============================================================================================-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OOPS</title>
+    <link rel="icon" type="image/png" href="assist/images/icons/overview-favicon.ico"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assist/css/overview.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
-
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('assist/images/bg-01.jpg');">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-logo">
-						<i class="zmdi zmdi-landscape"></i>
-					</span>
-
-					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
-					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="Username">
-						<span class="focus-input100" data-placeholder="&#xf207;"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100" data-placeholder="&#xf191;"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-
-					<div class="alert alert-danger mt-5 auth-validation" role="alert">
-					  	Invalid Username or Password
-					</div>
-
-<!--					<div class="text-center p-t-90">-->
-<!--						<a class="txt1" href="#">-->
-<!--							Forgot Password?-->
-<!--						</a>-->
-<!--					</div>-->
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-	<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-	<script src="assist/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/vendor/bootstrap/js/popper.js"></script>
-	<script src="assist/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/vendor/daterangepicker/moment.min.js"></script>
-	<script src="assist/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="assist/js/main.js"></script>
-
+    <header>
+        <div id="logo"><img src="assist/images/logo.png"></div>
+    </header>
+    <div class="container">
+        <div class="chart-analysis euwax-chart">
+            <h1>EUWAX SENTIMENT ANALYSIS</h1>
+            <div class="chart-analysis row chart">
+                <div class="col-8 bar-chart">
+                    <div id="myChart"></div>
+                </div>
+                <div class="col-4 t-speedometer">
+                    <canvas id="foo"></canvas>
+                    <div class="gauge-val">
+                        <span id="gauge1-txt"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chart-analysis dollar-index-chart mt-5">
+            <h1>DOLLAR INDEX SENTIMENT ANALYSIS</h1>
+            <div class="chart-analysis row chart">
+                <div class="col-8 bar-chart">
+                    <div id="dollar_index_Chart"></div>
+                </div>
+                <div class="col-4 t-speedometer">
+                    <canvas id="dollar_index_speedometer"></canvas>
+                    <div class="gauge-val">
+                        <span id="dollar_index-gauge_value"></span>
+                        <span id="dollar_index-percent" >(0%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assist/js/overview.js"></script>
+<!--    <script src="assist/js/chart.js"></script>-->
+<!--    <script src="assist/js/dollar-index-chart.js"></script>-->
+<!--    <script type="text/javascript" src="data.json"></script>-->
 </body>
 </html>
